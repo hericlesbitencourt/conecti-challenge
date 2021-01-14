@@ -30,12 +30,10 @@ const App = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  axios.defaults.headers.common['Content-Type'] ='application/json;charset=utf-8';
-  axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
   useEffect(() => {
     axios
-      .get(`https://murmuring-sands-94522.herokuapp.com/http://avaliacao.conecti.com.br/front/api/clients`)
+      .get(`https://cors-anywhere.herokuapp.com/http://avaliacao.conecti.com.br/front/api/clients`)
       .then((res) => {
         setCompanies(res.data);
       });
@@ -43,7 +41,7 @@ const App = () => {
 
   const onSubmit = (data) => {
     axios
-      .get(`https://murmuring-sands-94522.herokuapp.com/http://avaliacao.conecti.com.br/front/api/clients`)
+      .get(`https://cors-anywhere.herokuapp.com/http://avaliacao.conecti.com.br/front/api/clients`)
       .then((res) => {
         data["id"] = uuidv4();
         let newCompanies = [...companies, data];
@@ -64,8 +62,7 @@ const App = () => {
   const onSearchSubmit = (params) => {
     axios
       .get(
-        `https://cors-
-        anywhere.herokuapp.com/http://avaliacao.conecti.com.br/front/api/clients?text=` + params.text
+        `https://cors-anywhere.herokuapp.com/http://avaliacao.conecti.com.br/front/api/clients?text=` + params.text
       )
       .then((res) => {
         setCompanies(res.data);
@@ -105,7 +102,7 @@ const App = () => {
 
   const onDetailCompany = (id) => {
     axios
-      .get(`https://murmuring-sands-94522.herokuapp.com/http://avaliacao.conecti.com.br/front/api/clients?id=` + id)
+      .get(`https://cors-anywhere.herokuapp.com/http://avaliacao.conecti.com.br/front/api/clients?id=` + id)
       .then((res) => {
         const companyRes = companies.find((obj) => obj.id === id);
         setCompany(companyRes);
